@@ -55,3 +55,11 @@ Na zajeciach powtorzylem:
 - prace na katalogach, plikach w terminalu oraz poleceniami z nimi zwiazanymi
 - przypomnialem sobie jak przspieszac sobie prace lub ja skracac o nie potrzebne linijki polecen
 - przygotowalem sie do kolokwium, a przynajmniej jestem blizej zrozumienia zakresu materialu obowiazujacego na nastepnym kolokwium
+
+2021-12-18
+
+Z wprowadzenia do powershella dowiedzialem sie:
+
+- jak moge sprawdzic co robi polecenie, jakie ma parametry itp. Get-Help [polecenie]
+- dowiedzialem sie tez ze wiele z polecen linuxa, sa zmapowane w powershellu (man = Get-Help), oczywiscie ps ma swoje wlasne komendy ktore dla poprawnosci powinny byc uzywane nad tymi z linuxa
+- a takze wiem juz jak wykonywac niektore polecenia w ciagu np. Get-Module i Where-object, czyli za pomoca | 
