@@ -1,0 +1,107 @@
+Uruchomilem powershella z uprawnieniami admina, wykonalem polecenie Set-ExecutionPolicy Bypass
+
+Nastepnie wyprobowalem Get-Help a takze Get-Help (polecenie) -Examples
+
+NAME
+    Set-ExecutionPolicy
+
+SYNOPSIS
+    Sets the PowerShell execution policies for Windows computers.
+
+
+SYNTAX
+    Set-ExecutionPolicy [-ExecutionPolicy] {AllSigned | Bypass | Default | RemoteSigned | Restricted | Undefined | Unrestricted} [[-Scope] {CurrentUser | Local
+    Machine | MachinePolicy | Process | UserPolicy}] [-Force] [-Confirm]
+
+ ...
+
+Wykonalem polecenie  Get-Module -ListAvailable, zwrocilo mi liste dostepnych modulow
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.0.1      Microsoft.PowerShell.Operation.V... {Get-OperationValidation, Invoke-OperationValidation}
+Binary     1.0.0.1    PackageManagement                   {Find-Package, Get-Package, Get-PackageProvider, Get-PackageSource...}
+Script     3.4.0      Pester                              {Describe, Context, It, Should...}
+Script     1.0.0.1    PowerShellGet                       {Install-Module, Find-Module, Save-Module, Update-Module...}
+Script     2.0.0      PSReadline                          {Get-PSReadLineKeyHandler, Set-PSReadLineKeyHandler, Remove-PSReadLineKeyHandler, Get-PSReadLineOp...
+
+
+    Directory: C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Manifest   1.0.0.0    AppBackgroundTask                   {Disable-AppBackgroundTaskDiagnosticLog, Enable-AppBackgroundTaskDiagnosticLog, Set-AppBackgroundT...
+Manifest   2.0.0.0    AppLocker                           {Get-AppLockerFileInformation, Get-AppLockerPolicy, New-AppLockerPolicy, Set-AppLockerPolicy...} 
+
+...
+
+Wyprobowalem polecenia z Where-Object (== ?), | oraz $_ a także %
+
+za pomoca polecenia $cred = Get-Credential wpisalem swoje dane logowania a nastepnie poleceniem 
+$job = Start-BitsTransfer -Source http://szuflandia.pjwstk.edu.pl/pub/repo/java/lubuntu_13_04_v02.zip -Destination D:\ -Credential $cred -Authentication Negotiate -Asynchronous -DisplayName "Moj Bits Transfer"
+uruchomilem pobieranie w tle, aby podejrzec postepy wykonalem Get-BitsTransfer
+kiedy pobierany plik dostal status transferred poleceniem Complete-BitsTransfer -BitsJob $job zapisalem go
+
+sprawdzilem jak mierzyc czas wykonywanego polecenia, jak sprawdzic ktrotszy alias 
+sprawdzilem takze dzialanie ls C:\ | %{Sleep -Milliseconds 250; return $_} | Format-Table
+
+    Directory: C:\
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        09.09.2021     11:30                AMD
+d-----        10.09.2021     00:07                Battlestate Games
+d-----        07.11.2021     16:34                Games
+d-----        09.09.2021     11:58                MSI
+d-----        07.12.2019     10:14                PerfLogs
+d-r---        13.01.2022     17:53                Program Files
+d-r---        10.12.2021     02:46                Program Files (x86)
+d-----        09.09.2021     11:20                temp
+d-r---        09.09.2021     11:28                Users
+d-----        12.01.2022     09:23                Windows
+-a----        14.03.2020     18:03            117 main.cpp
+
+w nastepnym etapie wprowadzenia do ps'a sprawdzilem dzialanie znaku & ktory w powershellu oznacza call ktory wywoluje program do dzialania
+
+kolejnym krokiem byla praca zwiazana z zainstalowanymi aplkacjami 
+sposoby byly dwa:
+ 
+pierwszy oparty o prace w rejestrze, z pomoca ps'a moglem "wejsc do rejestru jak na dysk" i tam przegladac co sie w nim znajduje
+moglem tez z jego pomoca ingerowac w to co znajduje sie na komputerze, np. moglem usunac konkretny program
+ 
+DisplayName                                                    InstallDate UninstallString
+-----------                                                    ----------- ---------------
+cFosSpeed 11.11                                                            "C:\Program Files\cFosSpeed\setup.exe" -u...
+
+Oculus                                                                     C:\Program Files\Oculus\OculusSetup.exe /...
+Microsoft OneDrive                                                         C:\Program Files\Microsoft OneDrive\21.24...
+New World                                                                  "C:\Program Files (x86)\Steam\steam.exe" ...
+Arma 3                                                                     "C:\Program Files (x86)\Steam\steam.exe" ...
+Cyberpunk 2077                                                             "C:\Program Files (x86)\Steam\steam.exe" ...
+HUMANKIND™                                                                 "C:\Program Files (x86)\Steam\steam.exe" ...
+
+... 
+
+NVIDIA NodeJS                                                  20211220
+NVIDIA Watchdog Plugin for NvContainer                         20211220
+NVIDIA Telemetry Client                                        20211220
+NVIDIA Virtual Host Controller                                 20211220
+Nvidia Share                                                   20211220
+NVIDIA ShadowPlay 3.24.0.126                                   20211220
+NVIDIA SHIELD Wireless Controller Driver                       20211220
+NVIDIA Update Core                                             20211220
+NVIDIA USBC Driver 1.46.831.832                                20211220    "C:\Windows\SysWOW64\RunDll32.EXE" "C:\Pr...
+NVIDIA Virtual Audio 4.39.0.0                                  20211220
+WD_BLACK D50                                                   20210909    MsiExec.exe /I{BDE43F26-5917-44F8-B86A-F1...
+Microsoft Visual C++ 2012 x64 Minimum Runtime - 11.0.61030     20210910    MsiExec.exe /X{CF2BEA3C-26EA-32F8-AA9B-33...
+UE4 Prerequisites (x64)                                        20211226    MsiExec.exe /X{D7B591D8-1091-4A00-A0B3-53...
+AMD Ryzen Master SDK                                           20210909    MsiExec.exe /X{DBD50508-5F75-416B-995D-C4...
+
+
+drugim sposobem bylo wykorzystywanie Windows Management Instrumentation (WMI), z jego pomoca rowniez moglem zarzadac aplikacjami, sortowac je, czy usunac
+
+  
+
+
