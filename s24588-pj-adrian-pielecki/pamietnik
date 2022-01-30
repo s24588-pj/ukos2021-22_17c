@@ -63,3 +63,18 @@ Z wprowadzenia do powershella dowiedzialem sie:
 - jak moge sprawdzic co robi polecenie, jakie ma parametry itp. Get-Help [polecenie]
 - dowiedzialem sie tez ze wiele z polecen linuxa, sa zmapowane w powershellu (man = Get-Help), oczywiscie ps ma swoje wlasne komendy ktore dla poprawnosci powinny byc uzywane nad tymi z linuxa
 - a takze wiem juz jak wykonywac niektore polecenia w ciagu np. Get-Module i Where-object, czyli za pomoca | 
+
+2022-01-15
+
+Na zajeciach powtorzylem:
+
+- prace z gitem
+- dowiedzialem sie ze mozna podejrzec drzewo commitow
+
+2022-01-30
+
+Z zajec dowiedzialem sie:
+
+- ze powershell jest bardzo rozbudowanym narzedziem , w ktorym mozna rysowac np. tabele w wordzie
+- dowiedzialem sie ze powershell jest kompatybilny z csharpem
+- a takze dowiedzialem sie ze mozna programowac polecenia dla komputera typu przesuniecie kursora na ekranie
